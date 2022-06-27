@@ -7,6 +7,10 @@
 ### Create an AWS Code Pipeline that will build the code and deploy it on the EC2 server.
 ### Attach an Elastic IP to the EC2 instance and apply the domain and SSL.
 
+## ADDITIONAL
+### Once the Pipeline start working properly through Github, deploy it using code commit.
+### Attach load balancer and auto-scaling to it.
+
 # ACCEPTANCE CRITERIA
 
 ### The site should be accessible with the IP on port 80.
@@ -84,6 +88,63 @@ Purchase a Elastic IP for your EC2 instance and mention that IP with your Domain
 
 ![image](https://user-images.githubusercontent.com/67600604/174784310-557f9ccf-eb87-4c04-93f3-1c2fdf56a43b.png)
 
+## ADDITIONAL
+
+``` Step 1 – Pushed the Same Github code in code deploy ``` 
+Create a Repository  in code commit and from the github as we done before, clone the same in code in code commit using the git command and for the authentication for the code commit, 
+``` Go into the IAM -> Users -> Security Credentials -> Git Credentials for AWS code Commit ```  
+Get the credentials for the code commit to push the code into the newly created repo.
+
+![image](https://user-images.githubusercontent.com/67600604/175942111-9ed0d09f-0990-4e93-bc5d-2ca731aa8817.png)
+
+Then Create a pipeline as the same way we created for github, we just have to do one change is -
+Go to the Console create the pipeline , and choose the option code commit in the source stage instead of github and then enter the code commit repo details.
+![image](https://user-images.githubusercontent.com/67600604/175942308-bd94d0b3-ea32-4099-989a-2eba2fcc43a3.png)
+
+Now, release the changes in the pipeline as we done in the github case.
+```
+Note – If facing any kind of error while deploying that is related to the path not found, once check that is the code is getting into the S3 or not. If not, try to do with a freshly created Deployment group, It should work
+```
+
+Make some changes in the code commit repo it should automatically trigger the pipeline and check if the changes occurs in the server or not.
+
+![image](https://user-images.githubusercontent.com/67600604/175942505-01647a76-5592-41fc-b46f-d3984a0bd1cd.png)
+
+``` Step 2 – Attach load balancer and auto-scaling to it ```
+
+Create the AMI from your instance so that we can use that image to create more instance while auto scaling 
+Go to the AWS console -> EC2 -> target group 
+Create the target group for your instance’s AMI, select  the AMI you created and then go to the Load balancer and attach the target group we created from the AMI of our instance.
+
+![image](https://user-images.githubusercontent.com/67600604/175942614-ea00bf7f-9dd1-425d-9d3b-9db69e45e90d.png)
+
+With the help of this check if your load balancer is working or not
+
+![image](https://user-images.githubusercontent.com/67600604/175942669-555c2253-9f04-4fad-99f8-239b03af7f2c.png)
+
+Then go to the target group and check the instance state is healthy or unhealthy
+
+![image](https://user-images.githubusercontent.com/67600604/175942739-06989083-fc16-4a1b-b775-f0a2c8cf1da9.png)
+
+Now Go to the Auto scaling, and go to the launch configuration and click on create launch configurations
+
+![image](https://user-images.githubusercontent.com/67600604/175942782-a47b5dcb-5f29-4ab9-99e1-d1f55325dc72.png)
+
+Enter the details of your roles, IAM instance image and key pair info so that while creating the new instances, it can use those info to create the instances.
+
+![image](https://user-images.githubusercontent.com/67600604/175942819-54947418-defc-4c1e-8289-40cd5039af91.png)
+
+And then go to the Autoscaling and chose the configuration template that we created earlier in the configuration and enter the number of instance you needed to auto scale.
+
+![image](https://user-images.githubusercontent.com/67600604/175942895-1dc3454b-32de-48a7-82e8-5cfa968a431a.png)
+
+![image](https://user-images.githubusercontent.com/67600604/175942921-b0823376-ec99-4d34-a06a-d4290298d613.png)
+
+Here, I have taken three instance, wait to get the instance prepared and now in the target group check the state of all the instances
+
+![image](https://user-images.githubusercontent.com/67600604/175942972-33bf443b-9cdd-41ef-bce2-51062e55870b.png)
+
+All the instance are in the healthy state. edit in the autoscaling to 1 or 4 to check if it is working properly
 
 THANK YOU 
 SHRUTI :)

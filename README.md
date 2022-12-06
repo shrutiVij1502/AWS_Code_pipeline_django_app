@@ -1,4 +1,5 @@
 # TASK
+old repo name - project102
 
 ### Create an EC2 server.
 ### Pick any Django or python-based sample app from google or create it on your own.

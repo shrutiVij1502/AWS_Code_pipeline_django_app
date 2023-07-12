@@ -1,5 +1,4 @@
-# TASK
-old repo name - project102
+# TASK - Deploy Django App using AWS Code Pipeline
 
 ### Create an EC2 server.
 ### Pick any Django or python-based sample app from google or create it on your own.
@@ -8,11 +7,11 @@ old repo name - project102
 ### Create an AWS Code Pipeline that will build the code and deploy it on the EC2 server.
 ### Attach an Elastic IP to the EC2 instance and apply the domain and SSL.
 
-## ADDITIONAL
+## ADDITIONAL TASK
 ### Once the Pipeline start working properly through Github, deploy it using code commit.
 ### Attach load balancer and auto-scaling to it.
 
-# ACCEPTANCE CRITERIA
+# Definition Of Done!
 
 ### The site should be accessible with the IP on port 80.
 ### whenever any changes would be made in the code then the pipeline will trigger automatically and deployment should happen on the server.

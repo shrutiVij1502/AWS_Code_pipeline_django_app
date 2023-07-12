@@ -35,8 +35,6 @@ Create/Select a Key Pair - Select Create a new key pair option – > name your k
 
 I am picking up the default Sample app from the Django and followed this simple article to install the Django application using the gunicorn and done the configuration to run this on port 80
 
-Here is the Article Link - https://www.codewithharry.com/blogpost/django-deploy-nginx-gunicorn , Now our app is working on port 80 , On Nginx server
-
 ![image](https://user-images.githubusercontent.com/67600604/174781038-62c131a4-4a28-4d99-95b1-95c658977dc0.png)
 
 then pushed all the code files to the github 
